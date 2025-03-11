@@ -287,8 +287,11 @@ def build():
             subprocess.run(["cp", "config.ini.example", f"{output_dir}/config.ini"])
 
     # Copy .env.example file
+    # 复制 .env.example 文件 到 输出目录
     if os.path.exists(".env.example"):
+        # 运行模拟进度条
         simulate_progress("Copying environment file...", 0.5)
+        # 如果系统是 Windows，则使用 copy 命令，否则使用 cp 命令
         if system == "windows":
             subprocess.run(["copy", ".env.example", f"{output_dir}\\.env"], shell=True)
         else:
