@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# 设置环境变量以忽略特定的 Python 警告
 export PYTHONWARNINGS=ignore::SyntaxWarning:DrissionPage
 
 # Get script directory
@@ -7,8 +9,8 @@ cd "$(dirname "$0")"
 echo "Creating virtual environment..."
 
 # Check if virtual environment exists
-if [ ! -d "venv" ]; then
-    python3 -m venv venv
+if [ ! -d ".venv" ]; then
+    python3 -m venv .venv
     if [ $? -ne 0 ]; then
         echo "Failed to create virtual environment!"
         exit 1
@@ -16,7 +18,7 @@ if [ ! -d "venv" ]; then
 fi
 
 # Activate virtual environment
-source venv/bin/activate
+source .venv/bin/activate
 
 # Install dependencies
 echo "Installing dependencies..."

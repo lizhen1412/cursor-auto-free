@@ -1,10 +1,13 @@
 @echo off
+
+:: 设置环境变量以忽略特定的 Python 警告
 set PYTHONWARNINGS=ignore::SyntaxWarning:DrissionPage
+
 echo Building Cursor Keep Alive...
 
 :: Check if virtual environment exists
-if not exist "venv" (
-    python -m venv venv
+if not exist ".venv" (
+    python -m venv .venv
     if errorlevel 1 (
         echo Failed to create virtual environment!
         exit /b 1
@@ -12,7 +15,7 @@ if not exist "venv" (
 )
 
 :: Activate virtual environment and wait for activation to complete
-call venv\Scripts\activate.bat
+call .venv\Scripts\activate.bat
 timeout /t 2 /nobreak > nul
 
 :: Install dependencies
