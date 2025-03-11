@@ -1,14 +1,15 @@
-import os
-import platform
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import json
+import os
 import sys
-from colorama import Fore, Style
 from enum import Enum
 from typing import Optional
 
-from exit_cursor import ExitCursor
 import go_cursor_help
 import patch_cursor_get_machine_id
+from exit_cursor import ExitCursor
 from reset_machine import MachineIDResetter
 
 os.environ["PYTHONVERBOSE"] = "0"
@@ -23,18 +24,24 @@ from browser_utils import BrowserManager
 from get_email_code import EmailVerificationHandler
 from logo import print_logo
 from config import Config
-from datetime import datetime
 
 # 定义 EMOJI 字典
 EMOJI = {"ERROR": "❌", "WARNING": "⚠️", "INFO": "ℹ️"}
 
 
 class VerificationStatus(Enum):
-    """验证状态枚举"""
+    """
+    定义验证状态的枚举类，用于表示不同的验证页面或设置状态
 
+    Attributes:
+        PASSWORD_PAGE: 表示密码页面的验证状态
+        CAPTCHA_PAGE: 表示验证码页面的验证状态
+        ACCOUNT_SETTINGS: 表示账户设置页面的状态
+    """
     PASSWORD_PAGE = "@name=password"
     CAPTCHA_PAGE = "@data-index=0"
     ACCOUNT_SETTINGS = "Account Settings"
+
 
 
 class TurnstileError(Exception):
@@ -63,7 +70,7 @@ def save_screenshot(tab, stage: str, timestamp: bool = True) -> None:
             filename = f"turnstile_{stage}_{int(time.time())}.png"
         else:
             filename = f"turnstile_{stage}.png"
-
+        # 生成文件路径
         filepath = os.path.join(screenshot_dir, filename)
 
         # 保存截图

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 import json
@@ -14,18 +14,35 @@ from typing import Tuple
 
 # 配置日志
 def setup_logging() -> logging.Logger:
-    """配置并返回logger实例"""
+    """
+    配置并返回一个日志记录器对象。
+
+    此函数设置一个日志记录器，该记录器将日志信息输出到控制台。
+    它配置了日志的消息格式和日期格式，以及设置日志级别为INFO。
+
+    Returns:
+        logging.Logger: 配置好的日志记录器对象。
+    """
+    # 创建一个日志记录器，使用当前模块的名称作为日志记录器的名称
     logger = logging.getLogger(__name__)
+    # 设置日志级别为INFO，这意味着只有info及更高级别的消息会被处理
     logger.setLevel(logging.INFO)
+    # 创建一个流处理器，它将日志消息输出到控制台
     handler = logging.StreamHandler()
+    # 创建一个日志格式器，指定日志消息的输出格式和日期格式
     formatter = logging.Formatter(
         "%(asctime)s - %(levelname)s: %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
     )
+    # 为流处理器设置格式器，这样日志消息将按照指定的格式输出
     handler.setFormatter(formatter)
+    # 将流处理器添加到日志记录器中，以便日志消息可以被处理和输出
     logger.addHandler(handler)
+    # 返回配置好的日志记录器对象
     return logger
 
 
+
+# 初始化日志配置
 logger = setup_logging()
 
 

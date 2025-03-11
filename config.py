@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 from dotenv import load_dotenv
 import os
 import sys
@@ -41,18 +44,47 @@ class Config:
         self.check_config()
 
     def get_temp_mail(self):
+        """
+        获取临时邮箱地址
 
+        此方法用于返回当前实例所持有的临时邮箱地址它没有参数，
+        也不需要从外部获取任何信息直接返回实例变量 self.temp_mail
+
+        Returns:
+            str: 当前实例持有的临时邮箱地址
+        """
         return self.temp_mail
 
     def get_temp_mail_epin(self):
+        """
+        获取临时邮箱的验证码
 
+        该方法用于从实例的属性中获取临时邮箱的验证码这个验证码是临时邮箱服务提供商在验证邮箱时使用的代码或密钥
+
+        Returns:
+            str: 临时邮箱的验证码如果未定义或不可用，则可能返回空字符串或None
+        """
         return self.temp_mail_epin
 
     def get_temp_mail_ext(self):
-
+        """
+        获取临时邮件的扩展名。
+        Returns:
+            str: 临时邮件的扩展名。
+        """
         return self.temp_mail_ext
 
     def get_imap(self):
+        """
+        获取IMAP配置信息
+
+        当self.imap为False时，表示没有IMAP配置信息，返回False
+        否则，返回包含IMAP配置信息的字典，包括服务器地址、端口、用户名、密码及目录
+
+        Returns:
+            bool: 如果没有IMAP配置信息，则返回False
+            dict: 如果有IMAP配置信息，则返回包含配置信息的字典
+        """
         if not self.imap:
             return False
         return {
@@ -64,6 +96,14 @@ class Config:
         }
 
     def get_domain(self):
+        """
+        获取当前实例的域名信息。
+
+        该方法无需额外参数，直接返回实例的 `domain` 属性，即域名。
+        用于在需要的地方获取实例的域名信息，避免直接访问属性。
+
+        :return: 当前实例的域名。
+        """
         return self.domain
 
     def get_protocol(self):

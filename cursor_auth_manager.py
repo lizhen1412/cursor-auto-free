@@ -1,7 +1,9 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import sqlite3
 import os
 import sys
-
 
 class CursorAuthManager:
     """Cursor认证信息管理器"""

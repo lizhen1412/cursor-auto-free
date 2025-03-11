@@ -1,7 +1,12 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import os
+
 from dotenv import load_dotenv
+
 from get_email_code import EmailVerificationHandler
-import logging
+
 
 def test_temp_mail():
     """测试临时邮箱方式"""
